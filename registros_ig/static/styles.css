@@ -11,3 +11,7 @@ body{
     grid-auto-flow: auto 500px 1fr auto;
     margin: 0;
 }
+
+.miTituloNav{
+    color: var(--pico-primary-inverse);
+}

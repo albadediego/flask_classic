@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de cuentas: Lista</title>
-    <link rel="stylesheet" href="/static/pico.css">
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><strong>App Ingresos/Gastos</strong></li>
-                </ul>
-                <ul>
-                    <li class="--pico-primary-inverse"><a href="#">Inicio</a></li>
-                    <li class="--pico-primary-inverse"><a href="#">Nuevo</a></li>
-                    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-                </ul>
-            </nav>
+ {% extends "base.html" %}
 
-        </div>
-    </header>
-    <section class="container">
-        <h1>Lista de movimientos</h1>
+ {% block contenido %}
+ <h1>Lista de movimientos</h1>
+
         <table class="striped">
             <thead>
                 <tr>
@@ -35,31 +13,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">2025-09-01</th>
-                    <td>Nomina</td>
-                    <td>1900</td>
+                {% for item in lista %}
+                    <tr>
+                    <th scope="row">{{item.date}}</th>
+                    <td>{{item.concept}}</td>
+                    <td>{{item.quantity}}</td>
                     <td>
-                        <a href="#">
+                        <a href="/update/{{item.id}}">
                             <span class="material-symbols-outlined">
                                 edit
                             </span>
                         </a>
-                        <a href="#">
+                        <a href="/delete/{{item.id}}">
                             <span class="material-symbols-outlined">
                                 delete
                             </span>
                         </a>
                     </td>
-                </tr>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
-    </section>
-    <footer>
-         <div class="container">
-             &copy; 2025 Alba de Diego
-        </div>
-    </footer>
-
-</body>
-</html>
+{% endblock %}

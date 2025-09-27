@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de cuentas: Lista</title>
+    <link rel="stylesheet" href="/static/pico.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><strong>App Ingresos/Gastos</strong></li>
+                </ul>
+                <ul>
+                    <li><a class="miTituloNav" href="/">Inicio</a></li>
+                    <li><a  class="miTituloNav" href="/new">Nuevo</a></li>
+                    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <section class="container">
+       {% block contenido %}
+
+       {% endblock %}
+
+    </section>
+    <footer>
+         <div class="container">
+             &copy; 2025 Alba de Diego
+        </div>
+    </footer>
+
+</body>
+</html>
