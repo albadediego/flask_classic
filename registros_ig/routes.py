@@ -30,3 +30,19 @@ def create():
         insert([ request.form['date'], request.form['concept'], request.form['quantity'] ])
 
         return redirect("/")
+    
+@app.route("/delete/<int:id>", methods=["GET","POST"])
+def remove(id):
+    if request.method == "GET":
+        resultado = selectBy(id)
+        return render_template("delete.html", data=resultado)
+    else: #POST
+        return f"registro para eliminar con id: {id}"
+    
+@app.route("/update/<int:id>", methods=["GET","POST"])
+def update(id):
+    if request.method == "GET":
+        resultado = selectBy(id)
+        return render_template("update.html", datos=resultado)
+    else: #POST
+        return f"registro para actualizar con id: {id}"
