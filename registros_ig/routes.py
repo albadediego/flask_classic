@@ -1,7 +1,7 @@
 from registros_ig import app
 from flask import render_template, request, redirect, flash
 from registros_ig.models import *
-from datetime import date
+from datetime import date, datetime
 from registros_ig.forms import MovementsForm
 
 def validarFormulario(datosFormulario):
@@ -45,8 +45,12 @@ def remove(id):
     
 @app.route("/update/<int:id>", methods=["GET","POST"])
 def update(id):
+    form = MovementsForm()
     if request.method == "GET":
         resultado = selectBy(id)
-        return render_template("update.html", datos=resultado)
+        form.date.data=datetime.strptime(resultado[1], "%Y-%M-%d")
+        form.concept.data=resultado[2]
+        form.quantity.data=resultado[3]
+        return render_template("update.html", dataForm=form)
     else: #POST
         return f"registro para actualizar con id: {id}"
