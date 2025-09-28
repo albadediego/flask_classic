@@ -22,6 +22,11 @@
             </nav>
 
         </div>
+        <article>
+            <p>Ingreso: {{ingreso}}€</p>
+            <p>Gasto: {{gasto}}€</p>
+            <p>Saldo: {{saldo}}€</p>
+        </article>
     </header>
     <section class="container">
         {% with messages = get_flashed_messages() %}

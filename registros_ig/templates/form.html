@@ -2,7 +2,7 @@
  
  {% block contenido %}
 
-<form action="/new" method="post">
+<form action="{{dataURL}}" method="post">
   {{dataForm.csrf_token}}
 
   {{dataForm.date.label}}

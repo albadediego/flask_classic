@@ -18,13 +18,17 @@ def validarFormulario(datosFormulario):
 @app.route("/")
 def index():
     diccionario = selectAll()
-    return render_template("index.html",lista=diccionario)
+    ing = selectIngreso()
+    gas = selectGasto()
+    sal = float(ing)+float(gas)
+
+    return render_template("index.html",lista=diccionario,ingreso=ing,gasto=gas,saldo=sal)
 
 @app.route("/new", methods=["GET","POST"])
 def create():
     form = MovementsForm()
     if request.method == "GET": #GET
-        return render_template("create.html", dataForm=form)
+        return render_template("create.html", dataForm=form,dataURL=f"/new")
     else: #POST
         if form.validate_on_submit():
             insert([ request.form['date'], request.form['concept'], request.form['quantity'] ])
@@ -51,6 +55,11 @@ def update(id):
         form.date.data=datetime.strptime(resultado[1], "%Y-%M-%d")
         form.concept.data=resultado[2]
         form.quantity.data=resultado[3]
-        return render_template("update.html", dataForm=form)
+        return render_template("update.html", dataForm=form,dataURL=f"/update/{id}")
     else: #POST
-        return f"registro para actualizar con id: {id}"
+        updateBy(id, [
+            form.date.data.isoformat(),
+            form.concept.data,
+            form.quantity.data] )
+        
+        return redirect("/")
