@@ -31,3 +31,10 @@ ul.flashes{
     font-weight: bold;
     font-size: 0.8em;
 }
+
+.contenedor-scroll{
+    width: 100%; /*Ancho del contenedor*/
+    height: 500px; /*Alto del contenedor*/
+    border: 1px solid #ccc; /*Borde para visualizar el div*/
+    overflow-y: auto; /*Barra de desplazamiento vertica si es necesaria*/
+}

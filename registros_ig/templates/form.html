@@ -16,7 +16,7 @@
   {% endif %}
 
   {{dataForm.concept.label}}
-  {{dataForm.concept}}
+  {{dataForm.concept(placeholder="Ingrese el concepto")}}
   {% if dataForm.concept.errors %}
     <ul class="errors">
     {% for error in dataForm.concept.errors %}
@@ -26,7 +26,7 @@
   {% endif %}
 
   {{dataForm.quantity.label}}
-  {{dataForm.quantity}}
+  {{dataForm.quantity(placeholder="Ingrese monto", style="background-color: #ccc")}}
   {% if dataForm.quantity.errors %}
     <ul class="errors">
     {% for error in dataForm.quantity.errors %}

@@ -22,13 +22,13 @@
             </nav>
 
         </div>
-        <article>
-            <p>Ingreso: {{ingreso}}€</p>
-            <p>Gasto: {{gasto}}€</p>
-            <p>Saldo: {{saldo}}€</p>
-        </article>
+        <div class="grid">
+            <div>Ingreso: {{ingreso}}€</div>
+            <div>Gasto: {{gasto}}€</div>
+            <div>Saldo: {{saldo}}€</div>
+        </div>
     </header>
-    <section class="container">
+    <section class="container contenedor-scroll">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class=flashes>

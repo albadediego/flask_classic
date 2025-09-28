@@ -1,7 +1,7 @@
 from registros_ig.conexion import Conexion
 
 def selectAll():
-    conect = Conexion("SELECT * from movement;")
+    conect = Conexion("SELECT * FROM movement ORDER by date DESC;")
     filas = conect.res.fetchall() #datos de columnas (2025-09-01, Nomina, 1800),(2025-09-05, Mercado, -100)
     columnas = conect.res.description #nombre de columnas en las primeras filas (id,000),(date,000)
 
