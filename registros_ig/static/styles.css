@@ -15,3 +15,19 @@ body{
 .miTituloNav{
     color: var(--pico-primary-inverse);
 }
+
+.botonRojo{
+    background-color: #D93526;
+}
+
+ul.errors{
+    color: #D93526;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+ul.flashes{
+    color: rgb(97, 178, 16);
+    font-weight: bold;
+    font-size: 0.8em;
+}

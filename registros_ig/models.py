@@ -1,12 +1,9 @@
-import sqlite3
-from registros_ig import ORIGIN_DATA
+from registros_ig.conexion import Conexion
 
 def selectAll():
-    conexion = sqlite3.connect(ORIGIN_DATA)
-    cur = conexion.cursor()
-    res = cur.execute("SELECT * from movement;")
-    filas = res.fetchall() #datos de columnas (2025-09-01, Nomina, 1800),(2025-09-05, Mercado, -100)
-    columnas = res.description #nombre de columnas en las primeras filas (id,000),(date,000)
+    conect = Conexion("SELECT * from movement;")
+    filas = conect.res.fetchall() #datos de columnas (2025-09-01, Nomina, 1800),(2025-09-05, Mercado, -100)
+    columnas = conect.res.description #nombre de columnas en las primeras filas (id,000),(date,000)
 
     lista_diccionario = []
 
@@ -17,20 +14,21 @@ def selectAll():
             diccionario[c[0]] = f[posicion]
             posicion+=1
         lista_diccionario.append(diccionario)
-    conexion.close()
+    conect.con.close()
     return lista_diccionario
 
 def insert(registroForm):
-    conexion = sqlite3.connect(ORIGIN_DATA)
-    cur = conexion.cursor()
-    res = cur.execute("INSERT INTO movement(date, concept, quantity) VALUES(?,?,?);", registroForm)
-    conexion.commit() #funcion para validar el registro antes de guardar
-
-    conexion.close()
+    conectInsert = Conexion("INSERT INTO movement(date, concept, quantity) VALUES(?,?,?);", registroForm)
+    conectInsert.con.commit() #funcion para validar el registro antes de guardar
+    conectInsert.con.close()
 
 def selectBy(id):
-    conexion = sqlite3.connect(ORIGIN_DATA)
-    cur = conexion.cursor()
-    res = cur.execute(f"SELECT * FROM movement WHERE id={id};")
-    result = res.fetchall()
+    conectSelectBy = Conexion(f"SELECT * FROM movement WHERE id={id};")
+    result = conectSelectBy.res.fetchall()
+    conectSelectBy.con.close()
     return result[0]
+
+def deleteBy(id):
+    conectDelete = Conexion(f"DELETE FROM movement WHERE id={id};")
+    conectDelete.con.commit() #funcion para validar borrado
+    conectDelete.con.close()

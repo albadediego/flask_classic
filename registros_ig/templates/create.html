@@ -3,48 +3,40 @@
  {% block contenido %}
 
 <form action="/new" method="post">
-  <fieldset>
-    <label>
-      Fecha
-      <input
-      type="date"
-        name="date"
-        placeholder="First name"
-        value="{{dataForm['date']}}"
-      />
-    </label>
-    <label>
-      Concepto
-      <input
-        type="text"
-        name="concept"
-        placeholder="Ingrese un concepto de gasto o ingreso"
-        value="{{dataForm['concept']}}"
-      />
-    </label>
-    <label>
-      Monto
-      <input
-        type="number"
-        name="quantity"
-        placeholder="Ingrese el monto en €"
-        value="{{dataForm['quantity']}}"
-      />
-    </label>
-  </fieldset>
+  {{dataForm.csrf_token}}
 
-  <input
-    type="submit"
-    value="Guardar"
-  />
-</form>
-
-<article>
-    <ul>
-        {% for item in errors %}
-        <li>{{item}}</li>
-        {% endfor %}
+  {{dataForm.date.label}}
+  {{dataForm.date}}
+  {% if dataForm.date.errors %}
+    <ul class="errors">
+    {% for error in dataForm.date.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
     </ul>
-</article>
+  {% endif %}
+
+  {{dataForm.concept.label}}
+  {{dataForm.concept}}
+  {% if dataForm.concept.errors %}
+    <ul class="errors">
+    {% for error in dataForm.concept.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {{dataForm.quantity.label}}
+  {{dataForm.quantity}}
+  {% if dataForm.quantity.errors %}
+    <ul class="errors">
+    {% for error in dataForm.quantity.errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {{dataForm.submit}}
+
+</form>
 
  {% endblock %}
